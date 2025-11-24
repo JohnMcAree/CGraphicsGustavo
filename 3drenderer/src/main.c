@@ -1,5 +1,6 @@
-//gcc -Wall -std=c99 ./src/*.c -lSDL2 -o renderer
-
+//gcc -Wall -std=c99 *.c -lSDL2 -o renderer
+//compile with debug gcc -g -O0 -Wall -std=c99 *.c -lSDL2 -o renderer
+//debug with gdb: gdb ./renderer
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -48,6 +49,7 @@ bool initialize_window(void) {
         fprintf(stderr, "Error creating SDL renderer.\n");
         return false;
     }
+    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
     return true;
 }

@@ -90,7 +90,7 @@ void update(void) {
 void draw_grid(void) {
     for (int y = 0; y < window_height; y += 10) {
         for (int x = 0; x < window_width; x += 10) {
-            color_buffer[(window_width * y) + x] = 0xFF444444;
+            color_buffer[(window_width * y) + x] = 0xFFFF0000;
         }
     }
 }
@@ -129,7 +129,7 @@ void render(void) {
 
     draw_grid();
 
-    //draw_rect(300, 200, 300, 150, 0xFFFF00FF);
+    draw_rect(300, 200, 300, 150, 0xFFFF00FF);
 
     render_color_buffer();
     clear_color_buffer(0xFF000000);

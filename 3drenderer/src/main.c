@@ -129,7 +129,7 @@ void render(void) {
 
     draw_grid();
 
-    draw_rect(300, 200, 300, 150, 0xFFFF00FF);
+    draw_rect(300, 200, 300, 150, 0xFFFFFFFF);
 
     render_color_buffer();
     clear_color_buffer(0xFF000000);

@@ -51,6 +51,9 @@ void render(void) {
 
     draw_rect(300, 200, 300, 150, 0xFFFFFFFF);
 
+    for (int ex=400; ex<450; ex++)
+        draw_pixel(ex, 400, 0xFFFF00FF);
+
     render_color_buffer();
     clear_color_buffer(0xFF000000);
 

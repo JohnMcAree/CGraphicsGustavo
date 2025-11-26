@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 #include "display.h"
+#include "vector.h"
 
 
 SDL_Window* window = NULL; 

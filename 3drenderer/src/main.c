@@ -113,7 +113,6 @@ int main(void) {
 
     setup();
 
-    vec3_t test_vector = {2.0,3.0,-4.0};
     while (is_running) {
         process_input();
         update();

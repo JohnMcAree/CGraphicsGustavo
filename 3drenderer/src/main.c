@@ -67,8 +67,8 @@ void process_input(void) {
 
 vec2_t project(vec3_t point){
 	vec2_t projected_point = {
-		.x = (fov_factor * point.x),
-		.y = (fov_factor * point.y)
+		.x = (fov_factor * point.x) /  point.z,
+		.y = (fov_factor * point.y) / point.z
 	};
 	return projected_point;
 }

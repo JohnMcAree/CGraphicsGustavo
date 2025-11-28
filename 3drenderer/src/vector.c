@@ -5,7 +5,7 @@ vec3_t vec3_rotate_x(vec3_t v, float angle){
 	vec3_t rotated_vector = {
 	.x = v.x,
 	.y = v.y * cos(angle) -v.z * sin(angle),
-	.z = v.z * sin(angle) + v.z * cos(angle)
+	.z = v.y * sin(angle) + v.z * cos(angle)
 	};
  	return rotated_vector;
 }

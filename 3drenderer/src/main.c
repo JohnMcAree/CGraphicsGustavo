@@ -17,7 +17,9 @@
 vec3_t cube_points[N_POINTS];
 vec2_t projected_points[N_POINTS];
 
-float fov_factor = 128;
+vec3_t camera_position = {.x = 0, .y = 0, .z = -5};
+
+float fov_factor = 604;
 
 bool is_running = false;
 
@@ -78,6 +80,7 @@ void update(void) {
     for (int i = 0; i < N_POINTS; i++){
 	vec3_t point = cube_points[i];
 
+    point.z -=camera_position.z;
 	//project the current point
 	vec2_t projected_point = project(point);
 

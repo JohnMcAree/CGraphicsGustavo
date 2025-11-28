@@ -19,7 +19,7 @@ vec2_t projected_points[N_POINTS];
 
 vec3_t camera_position = {.x = 0, .y = 0, .z = -5};
 
-float fov_factor = 120;
+float fov_factor = 640;
 
 bool is_running = false;
 

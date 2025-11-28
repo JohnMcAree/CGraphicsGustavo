@@ -4,3 +4,5 @@ echo We are commiting and pushing to git!
 git add .
 git commit -m $1
 git push
+echo "your message is $1"
+

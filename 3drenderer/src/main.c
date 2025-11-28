@@ -87,9 +87,9 @@ void update(void) {
     cube_rotation.z += 0.01;			
     
     vec3_t transformed_point = vec3_rotate_x(point, cube_rotation.x);
+    transformed_point = vec3_rotate_y(transformed_point, cube_rotation.y);
+    transformed_point = vec3_rotate_z(transformed_point, cube_rotation.z);
     
-    transformed_point = vec3_rotate_y(point, cube_rotation.y);
-    transformed_point = vec3_rotate_z(point, cube_rotation.z);
     transformed_point.z -= camera_position.z;
 	//project the current point
 	vec2_t projected_point = project(transformed_point);

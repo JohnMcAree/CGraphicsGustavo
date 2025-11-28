@@ -79,13 +79,11 @@ vec2_t project(vec3_t point){
 
 
 void update(void) {
-    for (int i = 0; i < N_POINTS; i++){
-	vec3_t point = cube_points[i];
-
     cube_rotation.x += 0.01;			
     cube_rotation.y += 0.01;			
-    cube_rotation.z += 0.01;			
-    
+    cube_rotation.z += 0.01;
+    for (int i = 0; i < N_POINTS; i++){
+	vec3_t point = cube_points[i];
     vec3_t transformed_point = vec3_rotate_x(point, cube_rotation.x);
     transformed_point = vec3_rotate_y(transformed_point, cube_rotation.y);
     transformed_point = vec3_rotate_z(transformed_point, cube_rotation.z);

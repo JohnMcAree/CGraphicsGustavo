@@ -90,6 +90,10 @@ void update(void) {
             vec3_t transformed_vertex = vec3_rotate_x(transformed_vertex, cube_rotation.x);
             transformed_vertex = vec3_rotate_y(transformed_vertex, cube_rotation.y);
             transformed_vertex = vec3_rotate_z(transformed_vertex, cube_rotation.z);
+            
+            //translate the vetex away from the camera
+            transformed_vertex.z -= camera_position.z;
+            
             //Project the current vertex
             vec2_t projected_point = project(transformed_vertex);
             //scale and traslate the projected point to the center of the screen

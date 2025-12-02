@@ -1,7 +1,0 @@
-#usr/bin!
-echo hello!
-echo We are commiting and pushing to git!
-git add .
-git commit -m $1
-git push
-

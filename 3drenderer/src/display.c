@@ -1,15 +1,6 @@
-//gcc -Wall -std=c99 *.c -lSDL2 -o renderer
-//compile with debug gcc -g -O0 -Wall -std=c99 *.c -lSDL2 -o renderer
-//debug with gdb: gdb ./renderer
-#include <stdio.h>
-#include <stdint.h>
-#include <stdbool.h>
-#include <SDL2/SDL.h>
 #include "display.h"
-#include "vector.h"
 
-
-SDL_Window* window = NULL; 
+SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
 uint32_t* color_buffer = NULL;
 SDL_Texture* color_buffer_texture = NULL;
@@ -41,29 +32,28 @@ bool initialize_window(void) {
         fprintf(stderr, "Error creating SDL window.\n");
         return false;
     }
-    
+
     // Create a SDL renderer
     renderer = SDL_CreateRenderer(window, -1, 0);
     if (!renderer) {
         fprintf(stderr, "Error creating SDL renderer.\n");
         return false;
     }
-    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
     return true;
+}
+
+void draw_grid(void) {
+    for (int y = 0; y < window_height; y += 10) {
+        for (int x = 0; x < window_width; x += 10) {
+            color_buffer[(window_width * y) + x] = 0xFF444444;
+        }
+    }
 }
 
 void draw_pixel(int x, int y, uint32_t color) {
     if (x >= 0 && x < window_width && y >= 0 && y < window_height) {
         color_buffer[(window_width * y) + x] = color;
-    }
-}   
-
-void draw_grid(void) {
-    for (int y = 0; y < window_height; y += 100) {
-        for (int x = 0; x < window_width; x += 100) {
-            color_buffer[(window_width * y) + x] = 0xFFFF00FF;
-        }
     }
 }
 
@@ -72,9 +62,19 @@ void draw_rect(int x, int y, int width, int height, uint32_t color) {
         for (int j = 0; j < height; j++) {
             int current_x = x + i;
             int current_y = y + j;
-            color_buffer[(window_width * current_y) + current_x] = color;
+            draw_pixel(current_x, current_y, color);
         }
     }
+}
+
+void render_color_buffer(void) {
+    SDL_UpdateTexture(
+        color_buffer_texture,
+        NULL,
+        color_buffer,
+        (int)(window_width * sizeof(uint32_t))
+    );
+    SDL_RenderCopy(renderer, color_buffer_texture, NULL, NULL);
 }
 
 void clear_color_buffer(uint32_t color) {
@@ -90,14 +90,4 @@ void destroy_window(void) {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
-}
-
-void render_color_buffer(void) {
-    SDL_UpdateTexture(
-        color_buffer_texture,
-        NULL,
-        color_buffer,
-        (int)(window_width * sizeof(uint32_t))
-    );
-    SDL_RenderCopy(renderer, color_buffer_texture, NULL, NULL);
 }

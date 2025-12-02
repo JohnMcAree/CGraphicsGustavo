@@ -1,2 +1,3 @@
 #include "triangle.h"
-//Todo : create implementation for triangle.h
+
+// TODO: Create implementation for triangle.h functions

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -lt 1 ]; then
+  echo "Usage: gPush <commit message>"
+  echo "Example: gPush Added faces and triangles"
+  exit 1
+fi
+
+MSG="$*"
+
+# Stage all changes
+git add .
+
+# If there is nothing staged, skip commit
+if git diff --cached --quiet; then
+  echo "No changes to commit. Running git push..."
+else
+  git commit -m "$MSG"
+fi
+
+# Push to the current upstream
+git push
